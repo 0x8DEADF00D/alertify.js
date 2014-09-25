@@ -113,9 +113,11 @@
 
 .alertify-log {
 	background: #D9EDF7;
-	padding: 8px 14px;
+	padding: 10px;
 	border-radius: 4px;
 	color: #3A8ABF;
+    bottom: 30px;
+    font-size: 16px;
 	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 	border: 1px solid #BCE8F1;
 }
