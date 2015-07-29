@@ -474,7 +474,7 @@
 			 *
 			 * @return {Object}
 			 */
-			log : function (message, type, wait) {
+			log : function (message, clicked, type, wait) {
 				// check to ensure the alertify dialog element
 				// has been successfully created
 				var check = function () {
@@ -486,7 +486,7 @@
 				check();
 
 				elLog.className = "alertify-logs";
-				this.notify(message, type, wait);
+				this.notify(message, clicked, type, wait);
 				return this;
 			},
 
@@ -501,10 +501,11 @@
 			 *
 			 * @return {undefined}
 			 */
-			notify : function (message, type, wait) {
+			notify : function (message, clicked, type, wait) {
 				var log = document.createElement("article");
 				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
 				log.innerHTML = message;
+				log.addEventListener('click', clicked);
 				// append child
 				elLog.appendChild(log);
 				// triggers the CSS animation
@@ -606,10 +607,10 @@
 			confirm : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
 			extend  : _alertify.extend,
 			init    : _alertify.init,
-			log     : function (message, type, wait) { _alertify.log(message, type, wait); return this; },
+			log     : function (message, clicked, type, wait) { _alertify.log(message, clicked, type, wait); return this; },
 			prompt  : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
-			success : function (message, wait) { _alertify.log(message, "success", wait); return this; },
-			error   : function (message, wait) { _alertify.log(message, "error", wait); return this; },
+			success : function (message, clicked, wait) { _alertify.log(message, clicked, "success", wait); return this; },
+			error   : function (message, clicked, wait) { _alertify.log(message, clicked, "error", wait); return this; },
 			set     : function (args) { _alertify.set(args); },
 			labels  : _alertify.labels,
 			debug   : _alertify.handleErrors
